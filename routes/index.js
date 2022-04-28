@@ -1,8 +1,8 @@
 const express = require('express');
-const miniapp = require('express').Router();
+const miniApp = require('express').Router();
 
 const notesRouter = require('./notes');
 
-miniapp.use('/notes', notesRouter);
+miniApp.use('/notes', notesRouter);
 
-module.exports = miniapp;
+module.exports = miniApp;
