@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 notes.get('/', (req,res) => {
     res.json(`${req.method} request received to get notes`);
 
-    fs.readFile("./db/db.json", (err, data) => {
+    fs.readFile("./db/db.json", 'utf-8', (err, data) => {
         if(err) {
             console.log(err);
             return;
@@ -27,10 +27,17 @@ notes.post('/', (req,res) => {
             note_id: uuidv4(),
         };
 
-        const notesString = JSON.stringify(newNote);
+        fs.readFile("./db/db.json", "utf-8", (err, data) => {
+            if(err) {
+                console.log(err);
+            } else {
+                const parsedNote = JSON.parse(data);
+                parsedNote.push(newNote);
 
-        fs.writeFile("./db/db.json", notesString, (err) => { //will this override any existing notes objects that are already present within the db.json file?...i don't think it won't, but make sure
-            err ? console.err(err) : console.log(`New note for ${notesString.title} has been written to the JSON file`)
+                fs.writeFile("./db/db.json", JSON.stringify(newNote, null, 4), (err) => { 
+                    err ? console.err(err) : console.log(`New note for ${notesString.title} has been written to the JSON file`)
+                });
+            };
         });
 
         const response = {
