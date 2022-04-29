@@ -27,7 +27,7 @@ The below screenshot shows what the landing page looks like.
 
 Here is what the notes page looks like.
 
-![screenshot](./assets/11-express-homework-demo-01.png "Notes Page")
+![screenshot](./Assets/notes-page.PNG "Notes Page")
 
 ## **Important Code Snippet**
 
